@@ -1,53 +1,46 @@
 package com.example.fitmeapp.UserAuthorization;
 
-import jakarta.persistence.*;
-
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
-@Entity
-@Table(name = "application_user")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
-    private String email;
-    private String password;
-
+public class UserRegistrationDto {
     private String firstName;
     private String lastName;
+    private String email;
+    private String password;
+    private String confirmPassword;
     private int weight;
     private int height;
     private LocalDate birthDate;
     private int activityLevel;
     private Gender gender;
-    private LocalDateTime createdAt;
 
-    public User() {
-    }
-
-    public User(String email, String password, String firstName, String lastName, int weight, int height, LocalDate birthDate, int activityLevel, Gender gender, LocalDateTime createdAt) {
-        this.email = email;
-        this.password = password;
+    public UserRegistrationDto(String firstName, String lastName, String email, String password, String confirmPassword, int weight, int height, LocalDate birthDate, int activityLevel, Gender gender) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
         this.weight = weight;
         this.height = height;
         this.birthDate = birthDate;
         this.activityLevel = activityLevel;
         this.gender = gender;
-        this.createdAt = createdAt;
     }
 
-    public void setUserId(Long id) {
-        this.userId = id;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public Long getUserId() {
-        return userId;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -66,20 +59,12 @@ public class User {
         this.password = password;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getConfirmPassword() {
+        return confirmPassword;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     public int getWeight() {

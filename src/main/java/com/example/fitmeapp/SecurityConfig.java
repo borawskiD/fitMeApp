@@ -16,6 +16,7 @@ class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/register/**")).permitAll()
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/img/**")).permitAll()
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/css/**")).permitAll()
                         .anyRequest().authenticated())
