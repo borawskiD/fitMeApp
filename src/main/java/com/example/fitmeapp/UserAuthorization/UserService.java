@@ -19,12 +19,11 @@ public class UserService {
         System.out.println(email);
         return userRepository.findByEmail(email).map(UserCredentialsDtoMapper::map);
     }
-    public boolean registerNewUser(UserRegistrationDto userRegistrationDto){
+    public boolean registerNewUser(UserRegistrationDto userRegistrationDto, Gender gender){
         if (findCredentialsByEmail(userRegistrationDto.getEmail()).isPresent()) return false; //check if user exists
         if (!userRegistrationDto.getConfirmPassword().equals(userRegistrationDto.getPassword())) return false; //check if passwords match
-        //todo validation
         String passwordHash = passwordEncoder.encode(userRegistrationDto.getPassword());
-        User user = new User(userRegistrationDto.getEmail(), passwordHash, userRegistrationDto.getFirstName(), userRegistrationDto.getLastName(), userRegistrationDto.getWeight(), userRegistrationDto.getHeight(), userRegistrationDto.getBirthDate(), userRegistrationDto.getActivityLevel(), userRegistrationDto.getGender(), LocalDateTime.now());
+        User user = new User(userRegistrationDto.getEmail(), passwordHash, userRegistrationDto.getFirstName(), userRegistrationDto.getLastName(), userRegistrationDto.getWeight(), userRegistrationDto.getHeight(), userRegistrationDto.getBirthDate(), userRegistrationDto.getActivityLevel(), gender, LocalDateTime.now());
         userRepository.save(user);
         return true;
     }

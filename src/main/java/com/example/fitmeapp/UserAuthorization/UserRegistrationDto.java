@@ -1,20 +1,36 @@
 package com.example.fitmeapp.UserAuthorization;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import java.time.LocalDate;
 
 public class UserRegistrationDto {
+    @NotEmpty
     private String firstName;
+    @NotEmpty
     private String lastName;
+    @Email
     private String email;
+    @Size(min=8, max=36)
     private String password;
+    @Size(min=8, max=36)
     private String confirmPassword;
     private int weight;
     private int height;
+    @NotNull
     private LocalDate birthDate;
-    private int activityLevel;
-    private Gender gender;
+    @NotNull
+    private Integer activityLevel;
+    @NotEmpty
+    private String gender;
 
-    public UserRegistrationDto(String firstName, String lastName, String email, String password, String confirmPassword, int weight, int height, LocalDate birthDate, int activityLevel, Gender gender) {
+    public UserRegistrationDto() {
+    }
+
+    public UserRegistrationDto(String firstName, String lastName, String email, String password, String confirmPassword, int weight, int height, LocalDate birthDate, int activityLevel, String gender) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -91,19 +107,19 @@ public class UserRegistrationDto {
         this.birthDate = birthDate;
     }
 
-    public int getActivityLevel() {
+    public Integer getActivityLevel() {
         return activityLevel;
     }
 
-    public void setActivityLevel(int activityLevel) {
+    public void setActivityLevel(Integer activityLevel) {
         this.activityLevel = activityLevel;
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 }
