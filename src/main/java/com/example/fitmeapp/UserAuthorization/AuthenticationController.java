@@ -1,4 +1,4 @@
-package com.example.fitmeapp;
+package com.example.fitmeapp.UserAuthorization;
 
 import com.example.fitmeapp.UserAuthorization.Gender;
 import com.example.fitmeapp.UserAuthorization.UserRegistrationDto;

@@ -1,11 +1,13 @@
 package com.example.fitmeapp.UserAuthorization;
 
+import com.example.fitmeapp.ClientPanel.HealthData;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "application_user")
@@ -19,25 +21,21 @@ public class User {
 
     private String firstName;
     private String lastName;
-    private int weight;
-    private int height;
     private LocalDate birthDate;
-    private int activityLevel;
     private Gender gender;
     private LocalDateTime createdAt;
+    @OneToMany(mappedBy="owner", fetch=FetchType.EAGER)
+    private List<HealthData> parameters;
 
     public User() {
     }
 
-    public User(String email, String password, String firstName, String lastName, int weight, int height, LocalDate birthDate, int activityLevel, Gender gender, LocalDateTime createdAt) {
+    public User(String email, String password, String firstName, String lastName, LocalDate birthDate, Gender gender, LocalDateTime createdAt) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.weight = weight;
-        this.height = height;
         this.birthDate = birthDate;
-        this.activityLevel = activityLevel;
         this.gender = gender;
         this.createdAt = createdAt;
     }
@@ -82,22 +80,6 @@ public class User {
         this.lastName = lastName;
     }
 
-    public int getWeight() {
-        return weight;
-    }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
     public LocalDate getBirthDate() {
         return birthDate;
     }
@@ -106,19 +88,27 @@ public class User {
         this.birthDate = birthDate;
     }
 
-    public int getActivityLevel() {
-        return activityLevel;
-    }
-
-    public void setActivityLevel(int activityLevel) {
-        this.activityLevel = activityLevel;
-    }
-
     public Gender getGender() {
         return gender;
     }
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public List<HealthData> getParameters() {
+        return parameters;
+    }
+
+    public void setParameters(List<HealthData> parameters) {
+        this.parameters = parameters;
     }
 }

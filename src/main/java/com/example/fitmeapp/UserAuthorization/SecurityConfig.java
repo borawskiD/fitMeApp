@@ -1,4 +1,4 @@
-package com.example.fitmeapp;
+package com.example.fitmeapp.UserAuthorization;
 
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +19,7 @@ class SecurityConfig {
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/register/**")).permitAll()
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/img/**")).permitAll()
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/css/**")).permitAll()
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/js/**")).permitAll()
                         .anyRequest().authenticated())
                 .headers(headers -> headers.frameOptions().disable())
                 .csrf(csrf -> csrf.ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")));
